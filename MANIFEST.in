@@ -1,0 +1,11 @@
+include COPYING
+include README.rst
+include version.txt
+include vcversioner.py
+include requirements*.txt
+graft doc
+graft git_author
+graft test
+prune doc/_build
+global-exclude *.py[cod] __pycache__ *.so *.db
+

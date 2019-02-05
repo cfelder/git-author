@@ -1,0 +1,18 @@
+#!/bin/bash
+
+PYTHON="/usr/bin/env python"
+
+
+if [ $# -gt 0 ]; then
+    if [[ -n "$BASH_VERSION" && "$0" == "$BASH_SOURCE" ]] || \
+       [[ -n "$ZSH_VERSION" && ! "$ZSH_EVAL_CONTEXT" =~ :file$ ]]; then
+           cat <<EOF
+Error: git-author must be sourced. Run 'source git-author name'
+instead of 'git-author name'.
+EOF
+        exit 1
+    fi
+    eval "`${PYTHON} -m git_author $*`"
+else
+    ${PYTHON} -m git_author $*
+fi

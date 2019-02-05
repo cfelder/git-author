@@ -1,0 +1,7 @@
+*.egg-info
+.idea
+*.pyc
+dist
+git_author/_version.py
+build
+version.txt
