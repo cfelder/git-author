@@ -63,7 +63,7 @@ setup(name="git-author",
           "Programming Language :: Python :: 2",
           "Programming Language :: Python :: 3",
           "Topic :: Software Development",
-          "Topic :: Software Development :: Version Control"
+          "Topic :: Software Development :: Version Control",
           "Topic :: Software Development :: Version Control :: Git"
       ],
      )
