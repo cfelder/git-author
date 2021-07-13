@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PYTHON="/usr/bin/env python"
+PYTHON="/usr/bin/env python3"
 
 
 if [ $# -gt 0 ]; then
