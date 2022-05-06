@@ -29,6 +29,10 @@ Configure multiple users, e.g.::
     git config --global gitauthor.john.name "John Doe"
     git config --global gitauthor.john.email "john.doe@example.com"
 
+Since version 1.1.0 the committer can be set to match the author using::
+
+    git config --global gitauthor.committerisauthor true
+
 Get a list of configured users::
 
     $ git-author

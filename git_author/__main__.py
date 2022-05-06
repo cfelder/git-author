@@ -61,6 +61,7 @@ def get_authors():
     out = run_command("git", "config", "--list")
     authors = {}
     tmp = {}
+    committer_is_author = False
     for entry in out.splitlines():
         fullkey, value = entry.split('=', 1)
         if fullkey.startswith("gitauthor."):
@@ -70,7 +71,10 @@ def get_authors():
         else:
             continue
 
-        if target not in tmp:
+        if target == "committerisauthor":
+            committer_is_author = True if value == "true" else False
+            continue
+        elif target not in tmp:
             tmp[target] = dict()
 
         key = fullkey.rsplit('.', 1)[1]
@@ -80,24 +84,26 @@ def get_authors():
         if "name" in tmp[target] and "email" in tmp[target]:
             authors[target] = Author(name=tmp[target]["name"],
                                      email=tmp[target]["email"])
-    return authors
+    return authors, committer_is_author
 
 
-def print_author(author):
+def print_author(author, committer_is_author=False):
     # this function should just print bash evaluable content to stdout
     print("export GIT_AUTHOR_NAME='%s'" % author.name)
     print("export GIT_AUTHOR_EMAIL='%s'" % author.email)
+    if committer_is_author:
+        print("export GIT_COMMITTER_NAME='%s'" % author.name)
+        print("export GIT_COMMITTER_EMAIL='%s'" % author.email)
 
 
 def main(argv):
     ns = parse_args(argv)
-    authors = get_authors()
-
+    authors, committer_is_author = get_authors()
     if ns.name:
         if ns.name not in authors:
             print("No such author '%s'" % ns.name, file=sys.stderr)
             return -1
-        print_author(authors[ns.name])
+        print_author(authors[ns.name], committer_is_author)
     elif authors:
         print("The following authors have been configured:")
         print()
