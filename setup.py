@@ -11,7 +11,7 @@ __author__ = "Christian Felder <webmaster@bsm-felder.de>"
 __version__ = vcversioner.find_version(
     version_module_paths=[os.path.join("git_author",
                                        "_version.py")]).version
-__copyright__ = """Copyright 2019-2021, Christian Felder
+__copyright__ = """Copyright 2019-2022, Christian Felder
 
 This file is part of git-author, a git command for managing multiple authors.
 
